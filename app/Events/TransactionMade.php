@@ -18,9 +18,10 @@ class TransactionMade
     /**
      * Create a new event instance.
      */
-    public function __construct(User $user)
+    public function __construct($deposit, $transaction)
     {
-        $this->user = $user;
+        $this->deposit = $deposit;
+        $this->transaction = $transaction;
     }
 
     /**

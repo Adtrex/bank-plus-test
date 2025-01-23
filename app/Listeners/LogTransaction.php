@@ -13,7 +13,7 @@ class LogTransaction
      */
     public function __construct()
     {
-        //
+        
     }
 
     /**
@@ -21,6 +21,6 @@ class LogTransaction
      */
     public function handle(TransactionMade $event): void
     {
-        Log::info('', ['id' => $id]);
+        Log::info('This'. 'transaction ', ['id' => $id]);
     }
 }
