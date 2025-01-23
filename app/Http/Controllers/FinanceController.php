@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use App\Events\TransactionMade;
 
 class FinanceController extends Controller
 {
@@ -22,11 +23,13 @@ class FinanceController extends Controller
             'amount'=>'required|numeric|min:1',
         ]);
 
-        Transaction::create([
+        $transaction = Transaction::create([
             'user_id'=>auth()->id(),
             'amount'=>$request->amount,
             'type'=>'deposit',
         ]);
+
+        event(new TransactionMade('deposit', $transaction));
 
     }
 
@@ -42,11 +45,13 @@ class FinanceController extends Controller
             return 'Insufficient Funds';
         }
 
-        Transaction::create([
+        $transaction = Transaction::create([
             'user_id'=>auth()->id(),
             'amount'=>$request->amount,
             'type'=>'withdraw',
         ]);
+
+        event(new TransactionMade('withdraw', $transaction));
 
     }
 

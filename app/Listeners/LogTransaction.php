@@ -21,6 +21,6 @@ class LogTransaction
      */
     public function handle(TransactionMade $event): void
     {
-        
+        Log::info('', ['id' => $id]);
     }
 }
